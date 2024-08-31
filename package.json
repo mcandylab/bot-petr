@@ -2,7 +2,7 @@
   "name": "bot-semen",
   "version": "1.0.0",
   "main": "build/index.js",
-  "type": "module",
+  "type": "commonjs",
   "scripts": {
     "lint": "gts lint",
     "fix": "gts fix",
