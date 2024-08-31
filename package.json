@@ -1,18 +1,19 @@
 {
   "name": "bot-semen",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "build/index.js",
   "scripts": {
     "lint": "gts lint",
     "fix": "gts fix",
     "clean": "gts clean",
     "build": "tsc",
+    "start": "node build/index.js",
     "prettier": "prettier --write '**/*.{js,ts,json,css,md}'"
   },
   "keywords": [],
-  "author": "",
+  "author": "Andrey Abramov",
   "license": "ISC",
-  "description": "",
+  "description": "Бот Семён",
   "devDependencies": {
     "@types/node": "20.12.7",
     "eslint": "^8.57.0",
