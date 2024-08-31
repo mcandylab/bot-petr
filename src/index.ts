@@ -1,3 +1,4 @@
+import './config/env';
 import Hello from './hello';
 
 const hello = new Hello();

@@ -2,6 +2,7 @@
   "name": "bot-semen",
   "version": "1.0.0",
   "main": "build/index.js",
+  "type": "module",
   "scripts": {
     "lint": "gts lint",
     "fix": "gts fix",
@@ -23,6 +24,7 @@
     "husky": "^9.1.5",
     "lint-staged": "^15.2.9",
     "prettier": "^3.3.3",
+    "typegram": "^5.2.0",
     "typescript": "5.1"
   },
   "husky": {
@@ -35,5 +37,9 @@
       "npm run fix",
       "npm run prettier"
     ]
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "telegraf": "^4.16.3"
   }
 }
