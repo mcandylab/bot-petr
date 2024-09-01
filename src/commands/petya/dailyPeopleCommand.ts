@@ -81,12 +81,7 @@ export default class DailyPeopleCommand {
       created_at: new Date().toISOString(),
     });
 
-    const messages = generateRandomMessage(
-      context.from.username ||
-        context.from.first_name ||
-        context.from.last_name ||
-        '',
-    );
+    const messages = generateRandomMessage(randomUser.username);
 
     for (const message of messages) {
       await context.reply(message, { parse_mode: 'Markdown' });
