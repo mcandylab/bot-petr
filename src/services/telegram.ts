@@ -11,6 +11,11 @@ export default class Telegram {
   }
 
   public async init(): Promise<void> {
+    await this.bot.telegram.setMyCommands([
+      { command: 'start', description: 'Начало работы с ботом' },
+      { command: 'register', description: 'Зарегистрироваться в боте' },
+    ]);
+
     this.bot.start((context: Context) => {
       context.reply('Привет ' + context.from?.first_name + '!');
     });
