@@ -5,5 +5,5 @@ init:
 	npm run build
 	npm run start
 
-supabase-gen-schema:
+schema:
 	supabase gen types typescript --project-id $(SUPABASE_PROJECT_ID) > src/types/database.types.ts

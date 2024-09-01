@@ -1,5 +1,6 @@
 import { Context } from 'telegraf';
 import supabase from './supabase';
+import { type } from 'node:os';
 
 export default class Registration {
   public async execute(context: Context) {
@@ -32,8 +33,8 @@ export default class Registration {
 
   private async createPlayer(userId: number, chatId: number, username: string) {
     await supabase.from('users').insert({
-      chat_id: chatId,
       user_id: userId,
+      chat_id: chatId,
       username: username,
     });
   }
