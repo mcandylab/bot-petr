@@ -5,7 +5,7 @@ import {
   generateRandomRegisteredMessage,
 } from '../../lib/registrationMessages';
 
-export default class DailyPeopleCommand {
+export default class RegistrationCommand {
   public async init(context: Context, text: string): Promise<void> {
     const command = text.substring(5).trim();
 
