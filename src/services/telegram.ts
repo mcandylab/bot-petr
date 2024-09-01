@@ -1,36 +1,29 @@
-import { Context, Telegraf } from 'telegraf';
-import Registration from './registration';
-import DailyPeople from './dailyPeople';
+import { Telegraf } from 'telegraf';
+import RegistrationController from '../controllers/registrationController';
+import DailyPeopleController from '../controllers/dailyPeopleController';
+import StartController from '../controllers/startController';
+import PetyaController from '../controllers/petyaController';
 
 export default class Telegram {
-  private bot: Telegraf;
-  private registration: Registration;
-  private dailyPeople: DailyPeople;
+  private readonly bot: Telegraf;
+  private readonly startController: StartController;
+  private readonly registrationController: RegistrationController;
+  private readonly dailyPeopleController: DailyPeopleController;
+  private readonly petyaController: PetyaController;
 
   constructor() {
     this.bot = new Telegraf(process.env.BOT_TOKEN as string);
-    this.registration = new Registration();
-    this.dailyPeople = new DailyPeople();
+    this.startController = new StartController();
+    this.registrationController = new RegistrationController();
+    this.dailyPeopleController = new DailyPeopleController();
+    this.petyaController = new PetyaController();
   }
 
   public async init(): Promise<void> {
-    await this.bot.telegram.setMyCommands([
-      { command: 'start', description: 'Начало работы с ботом' },
-      { command: 'register', description: 'Зарегистрироваться в боте' },
-      { command: 'pidor', description: 'Выбрать пидора дня' },
-    ]);
-
-    this.bot.start((context: Context) => {
-      context.reply('Привет ' + context.from?.first_name + '!');
-    });
-
-    this.bot.command('register', async (context: Context) => {
-      await this.registration.execute(context);
-    });
-
-    this.bot.command('pidor', async (context: Context) => {
-      await this.dailyPeople.execute(context);
-    });
+    await this.startController.init(this.bot);
+    await this.registrationController.init(this.bot);
+    await this.dailyPeopleController.init(this.bot);
+    await this.petyaController.init(this.bot);
   }
 
   public async start(): Promise<void> {

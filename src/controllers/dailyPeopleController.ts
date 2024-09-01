@@ -1,8 +1,14 @@
-import { Context } from 'telegraf';
-import supabase from './supabase';
+import { Context, Telegraf } from 'telegraf';
+import supabase from '../services/supabase';
 import generateRandomMessage from '../lib/dailyPeopleMessages';
 
-export default class DailyPeople {
+export default class DailyPeopleController {
+  public async init(bot: Telegraf): Promise<void> {
+    bot.command('pidor', async (context: Context) => {
+      await this.execute(context);
+    });
+  }
+
   public async execute(context: Context) {
     const chatId = context.chat?.id;
     const from = context.from;
