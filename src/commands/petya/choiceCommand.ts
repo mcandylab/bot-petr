@@ -21,7 +21,7 @@ export default class ChoiceCommand {
         await context.reply('Вариантов должно быть больше одного');
       } else {
         const choice = this.execute(choices);
-        await context.reply(choice);
+        await context.reply(`🤔 Выбираю: ${choice}`);
       }
 
       return;

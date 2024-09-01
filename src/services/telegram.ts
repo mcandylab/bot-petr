@@ -1,25 +1,32 @@
 import { Telegraf } from 'telegraf';
-import RegistrationController from '../controllers/registrationController';
 import StartController from '../controllers/startController';
 import PetyaController from '../controllers/petyaController';
+import CommandController from '../controllers/CommandController';
 
 export default class Telegram {
   private readonly bot: Telegraf;
   private readonly startController: StartController;
-  private readonly registrationController: RegistrationController;
   private readonly petyaController: PetyaController;
+  private readonly commandController: CommandController;
 
   constructor() {
     this.bot = new Telegraf(process.env.BOT_TOKEN as string);
     this.startController = new StartController();
-    this.registrationController = new RegistrationController();
     this.petyaController = new PetyaController();
+    this.commandController = new CommandController();
   }
 
   public async init(): Promise<void> {
+    await this.bot.telegram.setMyCommands([
+      {
+        command: 'commands',
+        description: 'Получить список доступных команд',
+      },
+    ]);
+
     await this.startController.init(this.bot);
-    await this.registrationController.init(this.bot);
     await this.petyaController.init(this.bot);
+    await this.commandController.init(this.bot);
   }
 
   public async start(): Promise<void> {

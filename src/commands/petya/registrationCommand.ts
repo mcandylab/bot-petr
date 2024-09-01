@@ -1,18 +1,21 @@
-import { Context, Telegraf } from 'telegraf';
-import supabase from '../services/supabase';
+import { Context } from 'telegraf';
+import supabase from '../../services/supabase';
 import {
   generateRandomGreetingMessage,
   generateRandomRegisteredMessage,
-} from '../lib/registrationMessages';
+} from '../../lib/registrationMessages';
 
-export default class RegistrationController {
-  public async init(bot: Telegraf): Promise<void> {
-    bot.command('register', async (context: Context) => {
+export default class DailyPeopleCommand {
+  public async init(context: Context, text: string): Promise<void> {
+    const command = text.substring(5).trim();
+
+    if (command.toLowerCase() === 'регистрация') {
       await this.execute(context);
-    });
+      return;
+    }
   }
 
-  public async execute(context: Context) {
+  private async execute(context: Context) {
     const from = context.from;
     const chat = context.chat;
 
