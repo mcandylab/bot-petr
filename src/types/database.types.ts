@@ -9,6 +9,33 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      answers: {
+        Row: {
+          chat_id: number
+          count: number
+          created_at: string
+          id: number
+          message: string
+          user_id: number
+        }
+        Insert: {
+          chat_id: number
+          count: number
+          created_at?: string
+          id?: number
+          message: string
+          user_id: number
+        }
+        Update: {
+          chat_id?: number
+          count?: number
+          created_at?: string
+          id?: number
+          message?: string
+          user_id?: number
+        }
+        Relationships: []
+      }
       daily_people: {
         Row: {
           chat_id: number
@@ -51,33 +78,6 @@ export type Database = {
           id?: number
           user_id?: number
           username?: string
-        }
-        Relationships: []
-      }
-      yes_or_no: {
-        Row: {
-          chat_id: number
-          count: number
-          created_at: string
-          id: number
-          message: string
-          user_id: number
-        }
-        Insert: {
-          chat_id: number
-          count: number
-          created_at?: string
-          id?: number
-          message: string
-          user_id: number
-        }
-        Update: {
-          chat_id?: number
-          count?: number
-          created_at?: string
-          id?: number
-          message?: string
-          user_id?: number
         }
         Relationships: []
       }
