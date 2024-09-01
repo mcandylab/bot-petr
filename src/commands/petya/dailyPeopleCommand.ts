@@ -6,7 +6,7 @@ export default class DailyPeopleCommand {
   public async init(context: Context, text: string): Promise<void> {
     const command = text.substring(5).trim();
 
-    if (command.toLowerCase() === 'кто гей') {
+    if (command.toLowerCase() === 'найди пидора') {
       await this.execute(context);
       return;
     }
