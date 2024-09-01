@@ -54,6 +54,33 @@ export type Database = {
         }
         Relationships: []
       }
+      yes_or_no: {
+        Row: {
+          chat_id: number
+          count: number
+          created_at: string
+          id: number
+          message: string
+          user_id: number
+        }
+        Insert: {
+          chat_id: number
+          count: number
+          created_at?: string
+          id?: number
+          message: string
+          user_id: number
+        }
+        Update: {
+          chat_id?: number
+          count?: number
+          created_at?: string
+          id?: number
+          message?: string
+          user_id?: number
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

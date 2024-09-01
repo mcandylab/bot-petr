@@ -1,6 +1,9 @@
 import { Context } from 'telegraf';
 import supabase from './supabase';
-import { type } from 'node:os';
+import {
+  generateRandomGreetingMessage,
+  generateRandomRegisteredMessage,
+} from '../lib/registrationMessages';
 
 export default class Registration {
   public async execute(context: Context) {
@@ -8,11 +11,17 @@ export default class Registration {
     const chat = context.chat;
 
     if (from && chat) {
+      const username =
+        context.from.username ||
+        context.from.first_name ||
+        context.from.last_name ||
+        '';
+
       if (await this.validate(from.id, chat.id)) {
         await this.createPlayer(from.id, chat.id, from.username || '');
-        await context.reply(`@${from.username} успешно зарегистрирован!`);
+        await context.reply(generateRandomGreetingMessage(username));
       } else {
-        await context.reply(`@${from.username} ты уже зарегистрирован!`);
+        await context.reply(generateRandomRegisteredMessage(username));
       }
     } else {
       await context.reply(
