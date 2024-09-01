@@ -31,9 +31,21 @@ export default class AnswerController {
 
         await supabase.from('answers').update({ count }).eq('id', answer.id);
 
-        await context.reply(
-          `@${context.from.username}  ${getAnswerMessage(message)}! Счет ${count}:0 🎉`,
-        );
+        try {
+          await context.reply(
+            `@${context.from.username}  ${getAnswerMessage(message)}! Счет ${count}:0 🎉`,
+            {
+              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+              // @ts-ignore
+              reply_to_message_id: context.message.message_id,
+            },
+          );
+        } catch (error) {
+          console.error(
+            'Сообщение не было отправлено, так как исходное сообщение, возможно, было удалено:',
+            error,
+          );
+        }
       } else {
         await supabase.from('answers').insert({
           chat_id: context.chat.id,
@@ -42,9 +54,21 @@ export default class AnswerController {
           count: 1,
         });
 
-        await context.reply(
-          `@${context.from.username} ${getAnswerMessage(message)}! Счет 1:0 🎉`,
-        );
+        try {
+          await context.reply(
+            `@${context.from.username}  ${getAnswerMessage(message)}! Счет 1:0 🎉`,
+            {
+              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+              // @ts-ignore
+              reply_to_message_id: context.message.message_id,
+            },
+          );
+        } catch (error) {
+          console.error(
+            'Сообщение не было отправлено, так как исходное сообщение, возможно, было удалено:',
+            error,
+          );
+        }
       }
     }
   }
