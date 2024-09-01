@@ -1,15 +1,18 @@
-import { Context, Telegraf } from 'telegraf';
-import supabase from '../services/supabase';
-import generateRandomMessage from '../lib/dailyPeopleMessages';
+import { Context } from 'telegraf';
+import supabase from '../../services/supabase';
+import generateRandomMessage from '../../lib/dailyPeopleMessages';
 
-export default class DailyPeopleController {
-  public async init(bot: Telegraf): Promise<void> {
-    bot.command('pidor', async (context: Context) => {
+export default class DailyPeopleCommand {
+  public async init(context: Context, text: string): Promise<void> {
+    const command = text.substring(5).trim();
+
+    if (command.toLowerCase() === 'кто гей') {
       await this.execute(context);
-    });
+      return;
+    }
   }
 
-  public async execute(context: Context) {
+  private async execute(context: Context) {
     const chatId = context.chat?.id;
     const from = context.from;
 
