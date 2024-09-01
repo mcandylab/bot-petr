@@ -35,6 +35,4 @@ export default class PetyaController {
       }
     });
   }
-
-  public async execute() {}
 }
