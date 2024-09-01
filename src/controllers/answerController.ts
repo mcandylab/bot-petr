@@ -43,7 +43,7 @@ export default class AnswerController {
         });
 
         await context.reply(
-          `@${context.from.username}  ${getAnswerMessage(message)}! Счет 1:0 🎉`,
+          `@${context.from.username} ${getAnswerMessage(message)}! Счет 1:0 🎉`,
         );
       }
     }
