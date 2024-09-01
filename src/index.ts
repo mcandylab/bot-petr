@@ -1,4 +1,8 @@
-import Hello from './hello';
+import './config/env';
+import Telegram from './services/telegram';
 
-const hello = new Hello();
-console.log(hello.getText());
+const bot = new Telegram();
+
+bot.init().then(() => {
+  bot.start().then(() => {});
+});
