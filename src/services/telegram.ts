@@ -1,7 +1,7 @@
 import { Telegraf } from 'telegraf';
 import StartController from '../controllers/startController';
 import PetyaController from '../controllers/petyaController';
-import CommandController from '../controllers/CommandController';
+import CommandController from '../controllers/commandController';
 
 export default class Telegram {
   private readonly bot: Telegraf;
