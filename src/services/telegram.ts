@@ -27,7 +27,9 @@ export default class Telegram {
   }
 
   public async start(): Promise<void> {
-    this.bot.launch().then(() => {});
+    this.bot.launch().then(() => {
+      return;
+    });
 
     process.once('SIGINT', () => this.bot.stop('SIGINT'));
     process.once('SIGTERM', () => this.bot.stop('SIGTERM'));
