@@ -2,9 +2,9 @@ import { Context } from 'telegraf';
 
 export default class ChoiceCommand {
   public async init(context: Context, text: string): Promise<void> {
-    // Проверяем, если команда "Софа выбери"
-    if (text.toLowerCase().startsWith('Софа выбери')) {
-      const command = text.substring(11).trim(); // Получаем текст после "Софа выбери"
+    // Проверяем, если команда "Петя выбери"
+    if (text.toLowerCase().startsWith('петя выбери')) {
+      const command = text.substring(11).trim(); // Получаем текст после "Петя выбери"
 
       if (!command) {
         await context.reply('Вы не предоставили варианты выбора');

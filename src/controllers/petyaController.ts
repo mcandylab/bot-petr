@@ -21,12 +21,12 @@ export default class PetyaController {
   }
 
   public async init(bot: Telegraf) {
-    bot.hears(/^[Сс]офа/, async (context: Context) => {
+    bot.hears(/^[Пп]етя/, async (context: Context) => {
       if (context.text) {
         const text = context.text.trim();
 
-        // Проверяем, если команда просто "Софа" или "Софа"
-        if (text === 'Софа' || text.toLowerCase() === 'Софа') {
+        // Проверяем, если команда просто "Петя" или "петя"
+        if (text === 'Петя' || text.toLowerCase() === 'петя') {
           await context.reply('Шо');
           return;
         }

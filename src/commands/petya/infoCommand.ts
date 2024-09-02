@@ -2,16 +2,16 @@ import { Context } from 'telegraf';
 
 export default class InfoCommand {
   public async init(context: Context, text: string): Promise<void> {
-    // Проверяем, если команда "Софа инфа"
-    if (text.toLowerCase().startsWith('Софа инфа')) {
-      const command = text.substring(10).trim(); // Получаем текст после "Софа инфа"
+    // Проверяем, если команда "Петя инфа"
+    if (text.toLowerCase().startsWith('петя инфа')) {
+      const command = text.substring(10).trim(); // Получаем текст после "Петя инфа"
 
       if (!command) {
         await context.reply('Вы не предоставили информацию для проверки');
         return;
       }
 
-      // Если команда содержит текст после "Софа инфа", даём рандомный ответ
+      // Если команда содержит текст после "Петя инфа", даём рандомный ответ
       const response = this.execute();
       if (context.message) {
         try {
