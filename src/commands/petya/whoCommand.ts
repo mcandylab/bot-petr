@@ -3,9 +3,9 @@ import supabase from '../../services/supabase';
 
 export default class WhoCommand {
   public async init(context: Context, text: string): Promise<void> {
-    // Проверяем, если команда "Петя кто"
-    if (text.toLowerCase().startsWith('петя кто')) {
-      const command = text.substring(8).trim(); // Получаем текст после "Петя выбери"
+    // Проверяем, если команда "Софа кто"
+    if (text.toLowerCase().startsWith('Софа кто')) {
+      const command = text.substring(8).trim(); // Получаем текст после "Софа выбери"
 
       if (!command) {
         await context.reply('Вы не предоставили текст');
