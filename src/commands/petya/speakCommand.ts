@@ -1,5 +1,6 @@
 import { Context } from 'telegraf';
 import axios from 'axios';
+import * as https from 'node:https';
 
 export default class SpeakCommand {
   public async init(context: Context, command: string): Promise<void> {
@@ -15,10 +16,19 @@ export default class SpeakCommand {
 
   private async execute(string: string): Promise<string> {
     console.log(string);
+
+    const agent = new https.Agent({
+      rejectUnauthorized: true, // Оставляем по умолчанию для проверки сертификатов
+    });
+
     return await axios
-      .post('https://chat.mcandylab.ru/chat', {
-        text: string,
-      })
+      .post(
+        'https://chat.mcandylab.ru/chat',
+        {
+          text: string,
+        },
+        { httpsAgent: agent },
+      )
       .then(({ data }) => {
         console.log(data);
         return data.response;
