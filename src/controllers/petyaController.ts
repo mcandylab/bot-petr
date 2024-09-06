@@ -46,7 +46,7 @@ export default class PetyaController {
         } else if (text === 'удали неактивных') {
           await new Promise((resolve) => setTimeout(resolve, 3000));
           await context.reply(
-            'Да не братан, я пошерстил список чувачков, все активные, некого удалять...',
+            'Да не братан, я прошерстил список чувачков, все активные, некого удалять...',
           );
           // await context.reply('Начинаю поиск неактивных...');
           // await new Promise((resolve) => setTimeout(resolve, 3000));
