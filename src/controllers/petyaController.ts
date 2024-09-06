@@ -33,13 +33,19 @@ export default class PetyaController {
         if (text.startsWith('выбери')) {
           const command = text.substring(6).trim();
           await this.choiceCommand.init(context, command);
+        } else if (text.startsWith('кто')) {
+          const command = text.substring(3).trim();
+          await this.whoCommand.init(context, command);
+        } else if (text === 'найди пидора') {
+          await this.dailyPeopleCommand.init(context);
+        } else if (text === 'регистрация') {
+          await this.registrationCommand.init(context);
+        } else if (text.startsWith('инфа')) {
+          const command = text.substring(4).trim();
+          await this.infoCommand.init(context, command);
+        } else {
+          await this.speakCommand.init(context, text);
         }
-
-        // await this.infoCommand.init(context, text);
-        // await this.dailyPeopleCommand.init(context, text);
-        // await this.registrationCommand.init(context, text);
-        // await this.whoCommand.init(context, text);
-        // await this.speakCommand.init(context, text);
       }
     });
   }

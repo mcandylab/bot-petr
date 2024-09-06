@@ -6,13 +6,9 @@ import {
 } from '../../lib/registrationMessages';
 
 export default class RegistrationCommand {
-  public async init(context: Context, text: string): Promise<void> {
-    const command = text.substring(5).trim();
-
-    if (command.toLowerCase() === 'регистрация') {
-      await this.execute(context);
-      return;
-    }
+  public async init(context: Context): Promise<void> {
+    await this.execute(context);
+    return;
   }
 
   private async execute(context: Context) {

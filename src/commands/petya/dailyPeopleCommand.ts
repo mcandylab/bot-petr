@@ -3,13 +3,9 @@ import supabase from '../../services/supabase';
 import generateRandomMessage from '../../lib/dailyPeopleMessages';
 
 export default class DailyPeopleCommand {
-  public async init(context: Context, text: string): Promise<void> {
-    const command = text.substring(5).trim();
-
-    if (command.toLowerCase() === 'найди пидора') {
-      await this.execute(context);
-      return;
-    }
+  public async init(context: Context): Promise<void> {
+    await this.execute(context);
+    return;
   }
 
   private async execute(context: Context) {

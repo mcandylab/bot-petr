@@ -2,18 +2,13 @@ import { Context } from 'telegraf';
 import supabase from '../../services/supabase';
 
 export default class WhoCommand {
-  public async init(context: Context, text: string): Promise<void> {
-    // Проверяем, если команда "Петя кто"
-    if (text.toLowerCase().startsWith('петя кто')) {
-      const command = text.substring(8).trim(); // Получаем текст после "Петя выбери"
-
-      if (!command) {
-        await context.reply('Вы не предоставили текст');
-        return;
-      }
-
-      await this.execute(context, command);
+  public async init(context: Context, command: string): Promise<void> {
+    if (!command) {
+      await context.reply('Вы не предоставили текст');
+      return;
     }
+
+    await this.execute(context, command);
   }
 
   private async execute(context: Context, command: string): Promise<void> {
