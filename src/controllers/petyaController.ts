@@ -5,7 +5,6 @@ import DailyPeopleCommand from '../commands/petya/dailyPeopleCommand';
 import RegistrationCommand from '../commands/petya/registrationCommand';
 import WhoCommand from '../commands/petya/whoCommand';
 import SpeakCommand from '../commands/petya/speakCommand';
-import * as repl from 'node:repl';
 
 export default class PetyaController {
   private choiceCommand: ChoiceCommand;
