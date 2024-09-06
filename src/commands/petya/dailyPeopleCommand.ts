@@ -82,7 +82,7 @@ export default class DailyPeopleCommand {
     );
 
     for (const message of messages) {
-      await context.reply(message, { parse_mode: 'MarkdownV2' });
+      await context.reply(message, { parse_mode: 'Markdown' });
       await new Promise((resolve) => setTimeout(resolve, 3000));
     }
   }
