@@ -25,7 +25,7 @@ export default class SpeakCommand {
       })
       .catch((reason) => {
         console.log('Ошибка от c.ai', reason);
-        return '';
+        return 'Кажется мой мозг сломался.. скоро его починят';
       });
   }
 }
