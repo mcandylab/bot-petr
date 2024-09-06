@@ -77,11 +77,17 @@ export default class DailyPeopleCommand {
       created_at: new Date().toISOString(),
     });
 
-    const messages = generateRandomMessage(randomUser.username);
+    const messages = generateRandomMessage(
+      this.escapeMarkdownV2(randomUser.username),
+    );
 
     for (const message of messages) {
-      await context.reply(message, { parse_mode: 'Markdown' });
+      await context.reply(message, { parse_mode: 'MarkdownV2' });
       await new Promise((resolve) => setTimeout(resolve, 3000));
     }
+  }
+
+  private escapeMarkdownV2(text: string): string {
+    return text.replace(/[_*[\]()~`>#+\-=|{}.!]/g, '\\$&');
   }
 }
