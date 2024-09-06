@@ -18,7 +18,7 @@ export default class SpeakCommand {
     console.log(string);
 
     const agent = new https.Agent({
-      rejectUnauthorized: true, // Оставляем по умолчанию для проверки сертификатов
+      rejectUnauthorized: false,
     });
 
     return await axios
