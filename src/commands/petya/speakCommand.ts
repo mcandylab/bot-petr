@@ -15,20 +15,10 @@ export default class SpeakCommand {
   }
 
   private async execute(string: string): Promise<string> {
-    console.log(string);
-
-    const agent = new https.Agent({
-      rejectUnauthorized: false,
-    });
-
     return await axios
-      .post(
-        'https://chat.mcandylab.ru/chat',
-        {
-          text: string,
-        },
-        { httpsAgent: agent },
-      )
+      .post('https://chat.mcandylab.ru/chat', {
+        text: string,
+      })
       .then(({ data }) => {
         console.log(data);
         return data.response;
