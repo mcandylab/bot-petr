@@ -46,17 +46,20 @@ export default class PetyaController {
           await this.infoCommand.init(context, command);
         } else if (text === 'удали неактивных') {
           await new Promise((resolve) => setTimeout(resolve, 3000));
-          await context.reply('Начинаю поиск неактивных...');
-          await new Promise((resolve) => setTimeout(resolve, 3000));
           await context.reply(
-            'Ага, попались! В следующий раз будьте активнее!',
+            'Да не братан, я пошерстил список чувачков, все активные, некого удалять...',
           );
-          await new Promise((resolve) => setTimeout(resolve, 3000));
-          await context.telegram.banChatMember(-1002155745099, 457697191);
-          await new Promise((resolve) => setTimeout(resolve, 3000));
-          await context.telegram.banChatMember(-1002155745099, 566282848);
-          await new Promise((resolve) => setTimeout(resolve, 3000));
-          await context.reply('Хотя для вас уже следующего раза не будет!');
+          // await context.reply('Начинаю поиск неактивных...');
+          // await new Promise((resolve) => setTimeout(resolve, 3000));
+          // await context.reply(
+          //   'Ага, попались! В следующий раз будьте активнее!',
+          // );
+          // await new Promise((resolve) => setTimeout(resolve, 3000));
+          // await context.telegram.banChatMember(-1002155745099, 457697191);
+          // await new Promise((resolve) => setTimeout(resolve, 3000));
+          // await context.telegram.banChatMember(-1002155745099, 566282848);
+          // await new Promise((resolve) => setTimeout(resolve, 3000));
+          // await context.reply('Хотя для вас уже следующего раза не будет!');
         } else {
           await this.speakCommand.init(context, text);
         }
