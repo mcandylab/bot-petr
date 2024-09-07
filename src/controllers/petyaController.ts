@@ -43,6 +43,11 @@ export default class PetyaController {
           await this.registrationCommand.init(context);
         } else if (text === 'поле чудес') {
           await this.guessWordGame.init(context);
+        } else if (text.startsWith('буква')) {
+          const command = text.substring(5).trim();
+          if (command && command.length === 1 && /^[а-яА-ЯёЁ]$/.test(command)) {
+            await this.guessWordGame.guessWord(context, command);
+          }
         } else if (text.startsWith('инфа')) {
           const command = text.substring(4).trim();
           await this.infoCommand.init(context, command);

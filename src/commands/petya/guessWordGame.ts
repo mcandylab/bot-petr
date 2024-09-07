@@ -40,6 +40,45 @@ export default class GuessWordGame {
     }
   }
 
+  public async guessWord(ctx: Context, letter: string): Promise<void> {
+    if (ctx.from && ctx.chat) {
+      const { data: game } = await this.checkStartedGame(ctx);
+
+      if (!game) {
+        await ctx.reply('Активная игра не найдена. Начните новую игру.');
+        return;
+      }
+
+      const word = game.word;
+      let mask = game.mask;
+      let found = false;
+
+      for (let i = 0; i < word.length; i++) {
+        if (word[i].toLowerCase() === letter.toLowerCase()) {
+          mask = mask.substring(0, i) + word[i] + mask.substring(i + 1);
+          found = true;
+        }
+      }
+
+      if (found) {
+        await supabase.from('guess_words').update({ mask }).eq('id', game.id);
+
+        if (mask === word) {
+          await supabase
+            .from('guess_words')
+            .update({ mask, is_finished: true })
+            .eq('id', game.id);
+
+          await ctx.reply(`Поздравляем! Вы угадали слово: ${word}`);
+        } else {
+          await ctx.reply(`Правильно! Обновленное слово: ${mask}`);
+        }
+      } else {
+        await ctx.reply(`Буквы "${letter}" нет в слове.`);
+      }
+    }
+  }
+
   private async checkStartedGame(context: Context) {
     if (context.chat) {
       return supabase
