@@ -6,6 +6,7 @@ import RegistrationCommand from '../commands/petya/registrationCommand';
 import WhoCommand from '../commands/petya/whoCommand';
 import SpeakCommand from '../commands/petya/speakCommand';
 import GuessWordGame from '../commands/petya/guessWordGame';
+import * as console from 'node:console';
 
 export default class PetyaController {
   private choiceCommand: ChoiceCommand;
@@ -47,6 +48,14 @@ export default class PetyaController {
           const command = text.substring(5).trim();
           if (command && command.length === 1 && /^[а-яА-ЯёЁ]$/.test(command)) {
             await this.guessWordGame.guessWord(context, command);
+          }
+        } else if (text.startsWith('слово')) {
+          const command = text.substring(5).trim();
+
+          const parts = command.split(' ');
+
+          if (parts.length === 1 && /^[а-яА-ЯёЁ]+$/.test(parts[0])) {
+            await this.guessWordGame.guessWholeWord(context, command);
           }
         } else if (text.startsWith('инфа')) {
           const command = text.substring(4).trim();

@@ -79,6 +79,36 @@ export default class GuessWordGame {
     }
   }
 
+  public async guessWholeWord(
+    ctx: Context,
+    guessedWord: string,
+  ): Promise<void> {
+    if (ctx.from && ctx.chat) {
+      const { data: game } = await this.checkStartedGame(ctx);
+
+      if (!game) {
+        await ctx.reply('Активная игра не найдена. Начните новую игру.');
+        return;
+      }
+
+      const word = game.word;
+
+      if (guessedWord.toLowerCase() === word.toLowerCase()) {
+        await supabase
+          .from('guess_words')
+          .update({ mask: word, is_finished: true })
+          .eq('id', game.id);
+
+        const winner = ctx.from.username
+          ? `@${ctx.from.username}`
+          : ctx.from.first_name;
+        await ctx.reply(`Поздравляем, ${winner}! Угаданное слово: ${word}`);
+      } else {
+        await ctx.reply(`Слово "${guessedWord}" не совпадает с загаданным.`);
+      }
+    }
+  }
+
   private async checkStartedGame(context: Context) {
     if (context.chat) {
       return supabase
