@@ -5,6 +5,7 @@ import DailyPeopleCommand from '../commands/petya/dailyPeopleCommand';
 import RegistrationCommand from '../commands/petya/registrationCommand';
 import WhoCommand from '../commands/petya/whoCommand';
 import SpeakCommand from '../commands/petya/speakCommand';
+import GuessWordGame from '../commands/petya/guessWordGame';
 
 export default class PetyaController {
   private choiceCommand: ChoiceCommand;
@@ -13,6 +14,7 @@ export default class PetyaController {
   private registrationCommand: RegistrationCommand;
   private whoCommand: WhoCommand;
   private speakCommand: SpeakCommand;
+  private guessWordGame: GuessWordGame;
 
   constructor() {
     this.choiceCommand = new ChoiceCommand();
@@ -21,14 +23,13 @@ export default class PetyaController {
     this.registrationCommand = new RegistrationCommand();
     this.whoCommand = new WhoCommand();
     this.speakCommand = new SpeakCommand();
+    this.guessWordGame = new GuessWordGame();
   }
 
   public async init(bot: Telegraf) {
     bot.hears(/^[Пп]етя/, async (context: Context) => {
       if (context.text) {
         const text = context.text.substring(4).trim();
-
-        console.log('text: ' + text);
 
         if (text.startsWith('выбери')) {
           const command = text.substring(6).trim();
@@ -40,6 +41,8 @@ export default class PetyaController {
           await this.dailyPeopleCommand.init(context);
         } else if (text === 'регистрация') {
           await this.registrationCommand.init(context);
+        } else if (text === 'поле чудес') {
+          await this.guessWordGame.init(context);
         } else if (text.startsWith('инфа')) {
           const command = text.substring(4).trim();
           await this.infoCommand.init(context, command);

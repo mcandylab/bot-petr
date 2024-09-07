@@ -57,6 +57,33 @@ export type Database = {
         }
         Relationships: []
       }
+      guess_words: {
+        Row: {
+          chat_id: number
+          created_at: string
+          id: number
+          is_finished: boolean
+          mask: string
+          word: string
+        }
+        Insert: {
+          chat_id: number
+          created_at?: string
+          id?: number
+          is_finished: boolean
+          mask: string
+          word: string
+        }
+        Update: {
+          chat_id?: number
+          created_at?: string
+          id?: number
+          is_finished?: boolean
+          mask?: string
+          word?: string
+        }
+        Relationships: []
+      }
       users: {
         Row: {
           chat_id: number
