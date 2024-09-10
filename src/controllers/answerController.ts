@@ -4,12 +4,15 @@ import { getAnswerMessage } from '../lib/answerMessages';
 
 export default class AnswerController {
   public async init(bot: Telegraf): Promise<void> {
-    bot.hears(/^(да|ДА|Да|дА)$/i, async (context: Context) => {
-      await this.execute(context, 'да');
-    });
+    bot.hears(
+      /^(д[аa]|[dд][аa]|Д[АA]|[DД][АA])$/i,
+      async (context: Context) => {
+        await this.execute(context, 'да');
+      },
+    );
 
     bot.hears(
-      /^(нет|НЕТ|Нет|нЕт|НЕт|нЕТ|НеТ|неТ)$/i,
+      /^(н[еe][тt]|[nн][еe][тt]|Н[ЕE][ТT]|[NН][ЕE][ТT])$/i,
       async (context: Context) => {
         await this.execute(context, 'нет');
       },
