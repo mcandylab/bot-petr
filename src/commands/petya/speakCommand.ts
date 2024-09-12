@@ -18,6 +18,7 @@ export default class SpeakCommand {
     return await axios
       .post('https://chat.mcandylab.ru/chat', {
         text: string,
+        user_id: '1',
       })
       .then(({ data }) => {
         console.log(data);
