@@ -6,12 +6,13 @@ import RegistrationCommand from '../commands/petya/registrationCommand';
 import WhoCommand from '../commands/petya/whoCommand';
 import SpeakCommand from '../commands/petya/speakCommand';
 import GuessWordGame from '../commands/petya/guessWordGame';
-import * as console from 'node:console';
+import DailyPeopleStatsCommand from '../commands/petya/dailyPeopleStatsCommand';
 
 export default class PetyaController {
   private choiceCommand: ChoiceCommand;
   private infoCommand: InfoCommand;
   private dailyPeopleCommand: DailyPeopleCommand;
+  private dailyPeopleStatsCommand: DailyPeopleStatsCommand;
   private registrationCommand: RegistrationCommand;
   private whoCommand: WhoCommand;
   private speakCommand: SpeakCommand;
@@ -21,6 +22,7 @@ export default class PetyaController {
     this.choiceCommand = new ChoiceCommand();
     this.infoCommand = new InfoCommand();
     this.dailyPeopleCommand = new DailyPeopleCommand();
+    this.dailyPeopleStatsCommand = new DailyPeopleStatsCommand();
     this.registrationCommand = new RegistrationCommand();
     this.whoCommand = new WhoCommand();
     this.speakCommand = new SpeakCommand();
@@ -40,6 +42,8 @@ export default class PetyaController {
           await this.whoCommand.init(context, command);
         } else if (text === 'найди пидора') {
           await this.dailyPeopleCommand.init(context);
+        } else if (text === 'статистика') {
+          await this.dailyPeopleStatsCommand.init(context);
         } else if (text === 'регистрация') {
           await this.registrationCommand.init(context);
         } else if (text === 'поле чудес') {
@@ -60,22 +64,6 @@ export default class PetyaController {
         } else if (text.startsWith('инфа')) {
           const command = text.substring(4).trim();
           await this.infoCommand.init(context, command);
-        } else if (text === 'удали неактивных') {
-          await new Promise((resolve) => setTimeout(resolve, 3000));
-          await context.reply(
-            'Да не братан, я прошерстил список чувачков, все активные, некого удалять...',
-          );
-          // await context.reply('Начинаю поиск неактивных...');
-          // await new Promise((resolve) => setTimeout(resolve, 3000));
-          // await context.reply(
-          //   'Ага, попались! В следующий раз будьте активнее!',
-          // );
-          // await new Promise((resolve) => setTimeout(resolve, 3000));
-          // await context.telegram.banChatMember(-1002155745099, 457697191);
-          // await new Promise((resolve) => setTimeout(resolve, 3000));
-          // await context.telegram.banChatMember(-1002155745099, 566282848);
-          // await new Promise((resolve) => setTimeout(resolve, 3000));
-          // await context.reply('Хотя для вас уже следующего раза не будет!');
         } else {
           await this.speakCommand.init(context, text);
         }
