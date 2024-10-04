@@ -70,15 +70,23 @@ export default class DailyPeopleStatsCommand {
     }
 
     // Формирование сообщения со статистикой
-    let message = 'Статистика пидоров:\n\n';
+    const messageLines: string[] = [];
     let rank = 1;
     for (const stat of statsArray) {
       const username = userIdToUsername.get(stat.user_id);
       if (!username) continue;
 
-      message += `${rank}. @${this.escapeMarkdownV2(username)} — ${stat.count} раз(а)\n`;
+      // Создаем строку без экранирования специальных символов
+      const line = `${rank}. @${username} — ${stat.count} раз(а)`;
+
+      // Экранируем всю строку
+      const escapedLine = this.escapeMarkdownV2(line);
+
+      messageLines.push(escapedLine);
       rank++;
     }
+
+    const message = 'Статистика пидорков:\n\n' + messageLines.join('\n');
 
     await context.reply(message, { parse_mode: 'MarkdownV2' });
   }
