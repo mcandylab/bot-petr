@@ -9,6 +9,9 @@ cp .env.example .env
 npm install
 ```
 
-#### Используемые внешние сервисы
+#### Используемые внешние сервисы:
 - **Supabase** в качестве БД - https://supabase.com/
 - **ProxyAPI** в качестве прокси к OpenAI - https://proxyapi.ru/
+
+#### Схема БД:
+![](https://raw.githubusercontent.com/mcandylab/bot-petr/refs/heads/main/public/schema.png)
