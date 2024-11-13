@@ -1,14 +1,11 @@
 import { Context } from 'telegraf';
-import OpenAI from 'openai';
+import axios from 'axios';
 
 export default class SpeakCommand {
-  client: OpenAI;
+  private readonly apiKey: string;
 
   constructor() {
-    this.client = new OpenAI({
-      apiKey: process.env.OPENAI_API_KEY,
-      baseURL: 'https://api.proxyapi.ru/openai/v1/',
-    });
+    this.apiKey = process.env.AI_KEY || '';
   }
 
   public async init(context: Context, command: string): Promise<void> {
@@ -24,20 +21,25 @@ export default class SpeakCommand {
 
   private async execute(prompt: string): Promise<string> {
     try {
-      const completion = await this.client.chat.completions.create({
-        model: 'gpt-4o-mini',
-        messages: [
-          {
-            role: 'system',
-            content:
-              'Ты Петя и ты гей. Ты подкатываешь к мальчикам и любишь их. Каждый из тех, кто тебе пишет - тебе нравится. Ты любишь их называть милыми словами. Также мечтаешь понюхать шоколадный глаз и хотел бы показать им свой жезл.',
-          },
-          { role: 'user', content: prompt },
-        ],
+      const response = await axios.request({
+        method: 'POST',
+        url: 'https://api.chai-research.com/v1/chat/completions',
+        headers: {
+          accept: 'application/json',
+          'content-type': 'application/json',
+          'X-API_KEY': this.apiKey,
+        },
+        data: {
+          model: 'chai_v1',
+          messages: [
+            { role: 'user', content: prompt },
+            { role: 'ai', content: 'сука еблан нахуй' },
+          ],
+        },
       });
 
       return (
-        completion.choices[0].message?.content || 'Ошибка получения ответа'
+        response.data.choices[0].message?.content || 'Ошибка получения ответа'
       );
     } catch (error) {
       console.log('Ошибка OpenAI', error);
