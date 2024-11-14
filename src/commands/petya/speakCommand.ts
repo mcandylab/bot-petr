@@ -31,10 +31,7 @@ export default class SpeakCommand {
         },
         data: {
           model: 'chai_v1',
-          messages: [
-            { role: 'user', content: prompt },
-            { role: 'ai', content: 'сука еблан нахуй' },
-          ],
+          messages: [{ role: 'user', content: prompt }],
         },
       });
 
