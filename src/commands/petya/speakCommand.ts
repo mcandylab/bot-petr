@@ -9,9 +9,7 @@ export default class SpeakCommand {
     }
 
     const message = await this.execute(command);
-    await context.reply(message, {
-      parse_mode: 'MarkdownV2',
-    });
+    await context.reply(message);
     return;
   }
 
