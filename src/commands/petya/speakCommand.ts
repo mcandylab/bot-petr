@@ -17,7 +17,7 @@ export default class SpeakCommand {
     try {
       const response = await axios.request({
         method: 'POST',
-        url: 'https://chat.mcandylab.ru',
+        url: 'https://chat.team-admin.ru',
         data: {
           text,
         },
