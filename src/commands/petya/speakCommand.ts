@@ -21,7 +21,7 @@ export default class SpeakCommand {
       if (context.from.first_name) {
         prefix += context.from.first_name;
       }
-      if (context.from.last_name) {
+      else (context.from.last_name) {
         prefix += ` ${context.from.last_name}`;
       }
       if (prefix) {
