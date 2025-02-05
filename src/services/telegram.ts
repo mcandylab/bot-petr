@@ -30,11 +30,11 @@ export default class Telegram {
       },
     ]);
 
+    await this.autoRegistrationController.init(this.bot);
     await this.startController.init(this.bot);
     await this.petyaController.init(this.bot);
     await this.commandController.init(this.bot);
     await this.answerController.init(this.bot);
-    await this.autoRegistrationController.init(this.bot);
   }
 
   public async start(): Promise<void> {
