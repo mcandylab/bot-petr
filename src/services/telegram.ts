@@ -3,7 +3,7 @@ import StartController from '../controllers/startController';
 import PetyaController from '../controllers/petyaController';
 import CommandController from '../controllers/commandController';
 import AnswerController from '../controllers/answerController';
-import AutoRegistrationController from '../controllers/autoRegistrationController';
+// import AutoRegistrationController from '../controllers/autoRegistrationController';
 
 export default class Telegram {
   private readonly bot: Telegraf;
@@ -11,7 +11,7 @@ export default class Telegram {
   private readonly petyaController: PetyaController;
   private readonly commandController: CommandController;
   private readonly answerController: AnswerController;
-  private readonly autoRegistrationController: AutoRegistrationController;
+  // private readonly autoRegistrationController: AutoRegistrationController;
 
   constructor() {
     this.bot = new Telegraf(process.env.BOT_TOKEN as string);
@@ -19,7 +19,7 @@ export default class Telegram {
     this.petyaController = new PetyaController();
     this.commandController = new CommandController();
     this.answerController = new AnswerController();
-    this.autoRegistrationController = new AutoRegistrationController();
+    // this.autoRegistrationController = new AutoRegistrationController();
   }
 
   public async init(): Promise<void> {
@@ -30,7 +30,7 @@ export default class Telegram {
       },
     ]);
 
-    await this.autoRegistrationController.init(this.bot);
+    // await this.autoRegistrationController.init(this.bot);
     await this.startController.init(this.bot);
     await this.petyaController.init(this.bot);
     await this.commandController.init(this.bot);
