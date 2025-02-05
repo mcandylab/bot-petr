@@ -20,16 +20,16 @@ export default class SpeakCommand {
       // Формируем префикс из first_name и last_name, если они есть
       if (context.from.first_name) {
         prefix += context.from.first_name;
-      }
-      else (context.from.last_name) {
+      } else if (context.from.last_name) {
         prefix += ` ${context.from.last_name}`;
       }
+      
       if (prefix) {
         prefix += ']: ';
       }
     }
-
-    const finalText = prefix + text;
+    
+    const finalText = prefix + text;    
 
     try {
       const response = await axios.request({
