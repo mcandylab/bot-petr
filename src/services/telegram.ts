@@ -11,6 +11,7 @@ export default class Telegram {
   private readonly petyaController: PetyaController;
   private readonly commandController: CommandController;
   private readonly answerController: AnswerController;
+
   // private readonly autoRegistrationController: AutoRegistrationController;
 
   constructor() {
@@ -38,9 +39,13 @@ export default class Telegram {
   }
 
   public async start(): Promise<void> {
-    this.bot.launch().then(() => {
-      return;
-    });
+    this.bot
+      .launch({
+        allowedUpdates: ['message', 'channel_post'],
+      })
+      .then(() => {
+        return;
+      });
 
     process.once('SIGINT', () => this.bot.stop('SIGINT'));
     process.once('SIGTERM', () => this.bot.stop('SIGTERM'));
