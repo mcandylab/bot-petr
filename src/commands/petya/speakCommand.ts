@@ -34,7 +34,7 @@ export default class SpeakCommand {
     try {
       const response = await axios.request({
         method: 'POST',
-        url: 'https://mcandylab-bot-ai-647b.twc1.net',
+        url: 'https://ai.mcandylab.ru',
         data: {
           text: finalText,
         },
