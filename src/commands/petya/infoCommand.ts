@@ -7,7 +7,7 @@ export default class InfoCommand {
       return;
     }
 
-    // Если команда содержит текст после "Петя инфа", даём рандомный ответ
+    // Если команда содержит текст после "Света инфа", даём рандомный ответ
     const response = this.execute();
     if (context.message) {
       try {
