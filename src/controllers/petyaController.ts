@@ -30,7 +30,7 @@ export default class PetyaController {
   }
 
   public async init(bot: Telegraf) {
-    bot.hears(/^[Пп]етя/, async (context: Context) => {
+    bot.hears(/^[Сс]вета/, async (context: Context) => {
       if (context.text) {
         const text = context.text.substring(4).trim();
 
