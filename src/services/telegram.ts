@@ -19,7 +19,7 @@ export default class Telegram {
     this.startController = new StartController();
     this.petyaController = new PetyaController();
     this.commandController = new CommandController();
-    this.answerController = new AnswerController();
+    // this.answerController = new AnswerController();
     // this.autoRegistrationController = new AutoRegistrationController();
   }
 
@@ -35,7 +35,7 @@ export default class Telegram {
     await this.startController.init(this.bot);
     await this.petyaController.init(this.bot);
     await this.commandController.init(this.bot);
-    await this.answerController.init(this.bot);
+    // await this.answerController.init(this.bot);
   }
 
   public async start(): Promise<void> {
