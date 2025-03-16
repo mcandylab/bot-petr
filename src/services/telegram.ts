@@ -2,7 +2,7 @@ import { Telegraf } from 'telegraf';
 import StartController from '../controllers/startController';
 import PetyaController from '../controllers/petyaController';
 import CommandController from '../controllers/commandController';
-import AnswerController from '../controllers/answerController';
+// import AnswerController from '../controllers/answerController';
 // import AutoRegistrationController from '../controllers/autoRegistrationController';
 
 export default class Telegram {
@@ -10,7 +10,7 @@ export default class Telegram {
   private readonly startController: StartController;
   private readonly petyaController: PetyaController;
   private readonly commandController: CommandController;
-  private readonly answerController: AnswerController;
+  // private readonly answerController: AnswerController;
 
   // private readonly autoRegistrationController: AutoRegistrationController;
 
