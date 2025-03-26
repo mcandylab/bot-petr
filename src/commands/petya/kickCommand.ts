@@ -10,6 +10,18 @@ export default class KickCommand {
     }
 
     try {
+      const messages = [
+        'Давайте думать, блять, подсказывайте',
+        'Чё вы мозги ебёте',
+        'подскажите как блять сделать-то по красоте-то ёб твою мать?',
+        'короче вот ты и попался',
+      ];
+
+      for (const message of messages) {
+        await context.reply(message, { parse_mode: 'Markdown' });
+        await new Promise((resolve) => setTimeout(resolve, 3000));
+      }
+
       await context.telegram.banChatMember(chatId, parseInt(userId));
       await context.reply(`Ну все, как говорится, ариведерчи ёпта, ахаха`);
     } catch (error) {
