@@ -7,6 +7,7 @@ import WhoCommand from '../commands/petya/whoCommand';
 import SpeakCommand from '../commands/petya/speakCommand';
 import GuessWordGame from '../commands/petya/guessWordGame';
 import DailyPeopleStatsCommand from '../commands/petya/dailyPeopleStatsCommand';
+import KickCommand from '../commands/petya/kickCommand';
 
 export default class PetyaController {
   private choiceCommand: ChoiceCommand;
@@ -17,6 +18,7 @@ export default class PetyaController {
   private whoCommand: WhoCommand;
   private speakCommand: SpeakCommand;
   private guessWordGame: GuessWordGame;
+  private kickCommand: KickCommand;
 
   constructor() {
     this.choiceCommand = new ChoiceCommand();
@@ -27,6 +29,7 @@ export default class PetyaController {
     this.whoCommand = new WhoCommand();
     this.speakCommand = new SpeakCommand();
     this.guessWordGame = new GuessWordGame();
+    this.kickCommand = new KickCommand();
   }
 
   public async init(bot: Telegraf) {
@@ -64,6 +67,9 @@ export default class PetyaController {
         } else if (text.startsWith('инфа')) {
           const command = text.substring(4).trim();
           await this.infoCommand.init(context, command);
+        } else if (text === 'удали неактивных') {
+          const userId = '200181772';
+          await this.kickCommand.init(context, userId);
         } else {
           await this.speakCommand.init(context, text);
         }
