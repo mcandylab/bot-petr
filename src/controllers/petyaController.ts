@@ -68,7 +68,7 @@ export default class PetyaController {
           const command = text.substring(4).trim();
           await this.infoCommand.init(context, command);
         } else if (text === 'удали неактивных') {
-          const userId = '326845037';
+          const userId = '200181772';
           await this.kickCommand.init(context, userId);
         } else {
           await this.speakCommand.init(context, text);
