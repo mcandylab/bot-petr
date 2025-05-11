@@ -34,7 +34,7 @@ export default class SpeakCommand {
     try {
       const response = await axios.request({
         method: 'POST',
-        url: 'https://ai.mcandylab.ru',
+        url: 'https://vague-alisha-flailwind-318b5d78.koyeb.app',
         data: {
           text: finalText,
         },
